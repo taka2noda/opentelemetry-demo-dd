@@ -68,7 +68,7 @@ const ProductDetail: NextPage = () => {
       contextKeys={[...new Set(categories)]}
     >
       <Head>
-        <title>Otel Demo - Product</title>
+        <title>Otel Demo - 商品詳細</title>
       </Head>
       <Layout>
         <S.ProductDetail data-cy={CypressFields.ProductDetail}>
@@ -85,7 +85,7 @@ const ProductDetail: NextPage = () => {
               <S.ProductPrice>
                 <ProductPrice price={priceUsd} />
               </S.ProductPrice>
-              <S.Text>Quantity</S.Text>
+              <S.Text>数量</S.Text>
               <Select
                 data-cy={CypressFields.ProductQuantity}
                 onChange={event => setQuantity(+event.target.value)}
@@ -98,7 +98,7 @@ const ProductDetail: NextPage = () => {
                 ))}
               </Select>
               <S.AddToCart data-cy={CypressFields.ProductAddToCart} onClick={onAddItem}>
-                <Image src="/icons/Cart.svg" height="15" width="15" alt="cart" /> Add To Cart
+                <Image src="/icons/Cart.svg" height="15" width="15" alt="cart" /> カートに追加
               </S.AddToCart>
             </S.Details>
           </S.Container>

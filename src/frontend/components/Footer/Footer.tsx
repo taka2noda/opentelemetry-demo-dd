@@ -21,9 +21,9 @@ const Footer = () => {
   return (
     <S.Footer>
       <div>
-        <p>This website is hosted for demo purpose only. It is not an actual shop.</p>
+        <p>このウェブサイトはデモ目的でのみ公開されています。実際のショップではありません。</p>
         <p>
-          <span data-cy={CypressFields.SessionId}>session-id: {sessionId}</span>
+          <span data-cy={CypressFields.SessionId}>セッションID: {sessionId}</span>
         </p>
       </div>
       <p>

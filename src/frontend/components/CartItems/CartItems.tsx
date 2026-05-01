@@ -54,9 +54,9 @@ const CartItems = ({ productList, shouldShowPrice = true }: IProps) => {
   return (
     <S.CartItems>
       <S.CardItemsHeader>
-        <label>Product</label>
-        <label>Quantity</label>
-        <label>Price</label>
+        <label>商品</label>
+        <label>数量</label>
+        <label>価格</label>
       </S.CardItemsHeader>
       {productList.map(({ productId, product, quantity }) => (
         <CartItem key={productId} product={product} quantity={quantity} />
@@ -64,11 +64,11 @@ const CartItems = ({ productList, shouldShowPrice = true }: IProps) => {
       {shouldShowPrice && (
         <>
           <S.DataRow>
-            <span>Shipping</span>
+            <span>送料</span>
             <ProductPrice price={shippingConst} />
           </S.DataRow>
           <S.DataRow>
-            <S.TotalText>Total</S.TotalText>
+            <S.TotalText>合計</S.TotalText>
             <S.TotalText>
               <ProductPrice price={total} />
             </S.TotalText>

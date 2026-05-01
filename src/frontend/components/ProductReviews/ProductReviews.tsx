@@ -71,14 +71,14 @@ const ProductReviews = () => {
   return (
     <S.ProductReviews aria-live="polite" data-cy={CypressFields.ProductReviews}>
 
-        <S.AskAISection aria-label="Ask AI about this product" data-cy="AskAISection">
-            <S.AskAIHeader>Ask AI About This Product</S.AskAIHeader>
+        <S.AskAISection aria-label="AIにこの商品について質問する" data-cy="AskAISection">
+            <S.AskAIHeader>AIにこの商品について質問する</S.AskAIHeader>
 
             <S.AskAIInputRow>
                 <S.AskAIInput
                     id="ask-ai-input"
                     type="text"
-                    placeholder="Type a question about the product…"
+                    placeholder="商品について質問を入力してください…"
                     value={aiQuestion}
                     onChange={(e) => setAiQuestion(e.target.value)}
                     onKeyDown={(e) => {
@@ -86,7 +86,7 @@ const ProductReviews = () => {
                             handleAskAI();
                         }
                     }}
-                    aria-label="Question to AI"
+                    aria-label="AIへの質問"
                     data-cy="AskAIInput"
                 />
                 <S.AskAIButton
@@ -96,45 +96,45 @@ const ProductReviews = () => {
                     aria-busy={aiLoading ? 'true' : 'false'}
                     data-cy="AskAIButton"
                 >
-                    {aiLoading ? 'Asking AI…' : 'Ask'}
+                    {aiLoading ? 'AI に質問中…' : '質問する'}
                 </S.AskAIButton>
             </S.AskAIInputRow>
 
             <S.AskAIControls>
                 <S.QuickPromptButton
                     type="button"
-                    onClick={() => handleQuickPrompt('Can you summarize the product reviews?')}
+                    onClick={() => handleQuickPrompt('商品レビューを要約してください')}
                     data-cy="QuickPromptSummarize"
                 >
-                    Can you summarize the product reviews?
+                    商品レビューを要約してください
                 </S.QuickPromptButton>
 
                 <S.QuickPromptButton
                     type="button"
-                    onClick={() => handleQuickPrompt('What age(s) is this recommended for?')}
+                    onClick={() => handleQuickPrompt('何歳向けの商品ですか？')}
                     data-cy="QuickPromptAges"
                 >
-                    What age(s) is this recommended for?
+                    何歳向けの商品ですか？
                 </S.QuickPromptButton>
 
                 <S.QuickPromptButton
                     type="button"
-                    onClick={() => handleQuickPrompt('Were there any negative reviews?')}
+                    onClick={() => handleQuickPrompt('ネガティブなレビューはありましたか？')}
                     data-cy="QuickPromptNegative"
                 >
-                    Were there any negative reviews?
+                    ネガティブなレビューはありましたか？
                 </S.QuickPromptButton>
             </S.AskAIControls>
 
             {aiError && (
                 <S.AIMessage role="alert" data-cy="AIError">
-                    {aiError.message ?? 'Sorry, something went wrong while asking AI.'}
+                    {aiError.message ?? '申し訳ありません、AIへの質問中にエラーが発生しました。'}
                 </S.AIMessage>
             )}
 
             {aiResponse && (
                 <S.AIMessage aria-live="polite" data-cy="AIAnswer">
-                    <strong>AI Response:</strong>{' '}
+                    <strong>AI の回答:</strong>{' '}
                     {typeof aiResponse === 'string' ? aiResponse : aiResponse.text}
                 </S.AIMessage>
             )}
@@ -142,15 +142,15 @@ const ProductReviews = () => {
 
 
       <S.TitleContainer>
-        <S.Title>Customer Reviews</S.Title>
+        <S.Title>カスタマーレビュー</S.Title>
       </S.TitleContainer>
 
-        {loading && <p>Loading product reviews…</p>}
+        {loading && <p>レビューを読み込み中…</p>}
 
-        {!loading && error && <p>Could not load product reviews.</p>}
+        {!loading && error && <p>レビューを読み込めませんでした。</p>}
 
         {!loading && !error && Array.isArray(productReviews) && productReviews.length === 0 && (
-        <p>No reviews yet.</p>
+        <p>まだレビューはありません。</p>
         )}
 
         {!loading && !error && (
@@ -163,7 +163,7 @@ const ProductReviews = () => {
                                     <S.AverageScoreBadge>{average.toFixed(1)}</S.AverageScoreBadge>
                                     <StarRating value={average} />
                                     <S.ScoreCount>
-                                        {Array.isArray(productReviews) ? `${productReviews.length} reviews` : ''}
+                                        {Array.isArray(productReviews) ? `${productReviews.length} 件のレビュー` : ''}
                                     </S.ScoreCount>
                                 </S.AverageBlock>
 
@@ -199,7 +199,7 @@ const ProductReviews = () => {
                     <StarRating value={Number(review.score) || 0} />
                   </S.ReviewHeader>
                   <S.ReviewBody>
-                    {review.description || 'No description provided.'}
+                    {review.description || 'レビュー本文はありません。'}
                   </S.ReviewBody>
                 </S.ReviewCard>
               ))}

@@ -36,11 +36,11 @@ const CartDropdown = ({ productList, isOpen, onClose }: IProps) => {
     <S.CartDropdown ref={ref} data-cy={CypressFields.CartDropdown}>
       <S.ContentWrapper>
         <S.Header>
-          <S.Title>Shopping Cart</S.Title>
-          <span onClick={onClose}>Close</span>
+          <S.Title>ショッピングカート</S.Title>
+          <span onClick={onClose}>閉じる</span>
         </S.Header>
         <S.ItemList>
-          {!productList.length && <S.EmptyCart>Your shopping cart is empty</S.EmptyCart>}
+          {!productList.length && <S.EmptyCart>カートに商品がありません</S.EmptyCart>}
           {productList.map(
             ({ quantity, product: { name, picture, id, priceUsd = { nanos: 0, currencyCode: 'USD', units: 0 } } }) => (
               <S.Item key={id} data-cy={CypressFields.CartDropdownItem}>
@@ -48,7 +48,7 @@ const CartDropdown = ({ productList, isOpen, onClose }: IProps) => {
                 <S.ItemDetails $fullWidth={!picture}>
                   <S.ItemName>{name}</S.ItemName>
                   <ProductPrice price={priceUsd} />
-                  <S.ItemQuantity>Quantity: {quantity}</S.ItemQuantity>
+                  <S.ItemQuantity>数量: {quantity}</S.ItemQuantity>
                 </S.ItemDetails>
               </S.Item>
             )
@@ -56,7 +56,7 @@ const CartDropdown = ({ productList, isOpen, onClose }: IProps) => {
         </S.ItemList>
       </S.ContentWrapper>
       <Link href="/cart">
-        <S.CartButton data-cy={CypressFields.CartGoToShopping}>Go to Shopping Cart</S.CartButton>
+        <S.CartButton data-cy={CypressFields.CartGoToShopping}>カートへ進む</S.CartButton>
       </Link>
     </S.CartDropdown>
   ) : null;

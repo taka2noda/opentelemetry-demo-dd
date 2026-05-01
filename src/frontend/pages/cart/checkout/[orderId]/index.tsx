@@ -45,29 +45,29 @@ const Checkout: NextPage = () => {
       contextKeys={[...new Set(items.flatMap(({ item }) => item.product.categories))]}
     >
       <Head>
-        <title>Otel Demo - Checkout</title>
+        <title>Otel Demo - 注文完了</title>
       </Head>
       <Layout>
         <S.Checkout>
           <S.Container>
             <S.LeftColumn>
-              <S.Title>Your order is complete!</S.Title>
-              <S.Subtitle>We&apos;ve sent you a confirmation email.</S.Subtitle>
+              <S.Title>ご注文が完了しました！</S.Title>
+              <S.Subtitle>確認メールをお送りしました。</S.Subtitle>
               <S.OrderInfo>
-                <S.InfoLabel>Order ID:</S.InfoLabel>
+                <S.InfoLabel>注文ID:</S.InfoLabel>
                 <S.InfoValue>{orderId}</S.InfoValue>
               </S.OrderInfo>
             </S.LeftColumn>
 
             <S.RightColumn>
-              <S.SectionTitle>Shipping Address</S.SectionTitle>
+              <S.SectionTitle>配送先住所</S.SectionTitle>
               <S.AddressText>{shippingAddress.streetAddress}</S.AddressText>
               <S.AddressText>{shippingAddress.city}, {shippingAddress.state} {shippingAddress.zipCode}</S.AddressText>
               <S.AddressText>{shippingAddress.country}</S.AddressText>
             </S.RightColumn>
 
             <S.ItemsSection>
-              <S.SectionTitle>Order Items</S.SectionTitle>
+              <S.SectionTitle>注文商品</S.SectionTitle>
               <S.ItemList>
                 {items.map(({ item, cost = { units: 0, currencyCode: 'USD', nanos: 0 } }) => {
                   const itemTotal: Money = {
@@ -85,7 +85,7 @@ const Checkout: NextPage = () => {
                       <S.ItemImage src={"/images/products/" + item.product.picture} alt={item.product.name}/>
                       <S.ItemDetails>
                         <S.ItemName>{item.product.name}</S.ItemName>
-                        <S.ItemQuantity>Quantity: {item.quantity}</S.ItemQuantity>
+                        <S.ItemQuantity>数量: {item.quantity}</S.ItemQuantity>
                       </S.ItemDetails>
                       <S.ItemPrice>
                         <ProductPrice price={itemTotal} />
@@ -97,11 +97,11 @@ const Checkout: NextPage = () => {
 
               <S.OrderSummary>
                 <S.SummaryRow>
-                  <span>Shipping:</span>
+                  <span>送料:</span>
                   <ProductPrice price={shippingCost} />
                 </S.SummaryRow>
                 <S.TotalRow>
-                  <S.TotalLabel>Total:</S.TotalLabel>
+                  <S.TotalLabel>合計:</S.TotalLabel>
                   <S.TotalAmount>
                     <ProductPrice price={orderTotal} />
                   </S.TotalAmount>
@@ -111,7 +111,7 @@ const Checkout: NextPage = () => {
 
             <S.ButtonContainer>
               <Link href="/">
-                <Button type="submit">Continue Shopping</Button>
+                <Button type="submit">ショッピングを続ける</Button>
               </Link>
             </S.ButtonContainer>
           </S.Container>

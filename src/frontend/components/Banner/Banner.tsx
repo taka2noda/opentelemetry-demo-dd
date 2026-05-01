@@ -11,8 +11,8 @@ const Banner = () => {
         <S.BannerImg />
       </S.ImageContainer>
       <S.TextContainer>
-        <S.Title>The best telescopes to see the world closer</S.Title>
-        <Link href="#hot-products"><S.GoShoppingButton>Go Shopping</S.GoShoppingButton></Link>
+        <S.Title>世界をもっと近くに — 最高の望遠鏡</S.Title>
+        <Link href="#hot-products"><S.GoShoppingButton>ショッピングへ</S.GoShoppingButton></Link>
       </S.TextContainer>
     </S.Banner>
   );

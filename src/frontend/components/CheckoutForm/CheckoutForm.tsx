@@ -80,10 +80,10 @@ const CheckoutForm = ({ onSubmit }: IProps) => {
         });
       }}
     >
-      <S.Title>Shipping Address</S.Title>
+      <S.Title>配送先住所</S.Title>
 
       <Input
-        label="E-mail Address"
+        label="メールアドレス"
         type="email"
         id="email"
         name="email"
@@ -92,7 +92,7 @@ const CheckoutForm = ({ onSubmit }: IProps) => {
         onChange={handleChange}
       />
       <Input
-        label="Street Address"
+        label="番地・建物名"
         type="text"
         name="streetAddress"
         id="street_address"
@@ -101,7 +101,7 @@ const CheckoutForm = ({ onSubmit }: IProps) => {
         required
       />
       <Input
-        label="Zip Code"
+        label="郵便番号"
         type="text"
         name="zipCode"
         id="zip_code"
@@ -109,15 +109,15 @@ const CheckoutForm = ({ onSubmit }: IProps) => {
         onChange={handleChange}
         required
       />
-      <Input label="City" type="text" name="city" id="city" value={city} required onChange={handleChange} />
+      <Input label="市区町村" type="text" name="city" id="city" value={city} required onChange={handleChange} />
 
       <S.StateRow>
-        <Input label="State" type="text" name="state" id="state" value={state} required onChange={handleChange} />
+        <Input label="都道府県" type="text" name="state" id="state" value={state} required onChange={handleChange} />
         <Input
-          label="Country"
+          label="国"
           type="text"
           id="country"
-          placeholder="Country Name"
+          placeholder="国名"
           name="country"
           value={country}
           onChange={handleChange}
@@ -126,12 +126,12 @@ const CheckoutForm = ({ onSubmit }: IProps) => {
       </S.StateRow>
 
       <div>
-        <S.Title>Payment Method</S.Title>
+        <S.Title>支払い方法</S.Title>
       </div>
 
       <Input
         type="text"
-        label="Credit Card Number"
+        label="クレジットカード番号"
         id="credit_card_number"
         name="creditCardNumber"
         placeholder="0000-0000-0000-0000"
@@ -143,28 +143,28 @@ const CheckoutForm = ({ onSubmit }: IProps) => {
 
       <S.CardRow>
         <Input
-          label="Month"
+          label="月"
           name="creditCardExpirationMonth"
           id="credit_card_expiration_month"
           value={creditCardExpirationMonth}
           onChange={handleChange}
           type="select"
         >
-          <option value="1">January</option>
-          <option value="2">February</option>
-          <option value="3">March</option>
-          <option value="4">April</option>
-          <option value="5">May</option>
-          <option value="6">June</option>
-          <option value="7">July</option>
-          <option value="8">August</option>
-          <option value="9">September</option>
-          <option value="10">October</option>
-          <option value="11">November</option>
-          <option value="12">January</option>
+          <option value="1">1月</option>
+          <option value="2">2月</option>
+          <option value="3">3月</option>
+          <option value="4">4月</option>
+          <option value="5">5月</option>
+          <option value="6">6月</option>
+          <option value="7">7月</option>
+          <option value="8">8月</option>
+          <option value="9">9月</option>
+          <option value="10">10月</option>
+          <option value="11">11月</option>
+          <option value="12">12月</option>
         </Input>
         <Input
-          label="Year"
+          label="年"
           name="creditCardExpirationYear"
           id="credit_card_expiration_year"
           value={creditCardExpirationYear}
@@ -191,9 +191,9 @@ const CheckoutForm = ({ onSubmit }: IProps) => {
 
       <S.SubmitContainer>
         <Link href="/">
-          <S.CartButton $type="secondary">Continue Shopping</S.CartButton>
+          <S.CartButton $type="secondary">ショッピングを続ける</S.CartButton>
         </Link>
-        <S.CartButton data-cy={CypressFields.CheckoutPlaceOrder} type="submit">Place Order</S.CartButton>
+        <S.CartButton data-cy={CypressFields.CheckoutPlaceOrder} type="submit">注文を確定する</S.CartButton>
       </S.SubmitContainer>
     </S.CheckoutForm>
   );

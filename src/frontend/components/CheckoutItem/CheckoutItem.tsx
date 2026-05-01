@@ -32,27 +32,27 @@ const CheckoutItem = ({
         {picture && <S.ItemImage src={`/images/products/${picture}`} alt={name} />}
         <S.Details>
           <S.ItemName>{name}</S.ItemName>
-          <p>Quantity: {quantity}</p>
+          <p>数量: {quantity}</p>
           <p>
-            Total: <ProductPrice price={cost} />
+            合計: <ProductPrice price={cost} />
           </p>
         </S.Details>
       </S.ItemDetails>
       <S.ShippingData>
-        <S.ItemName>Shipping Data</S.ItemName>
-        <p>Street: {streetAddress}</p>
-        {!isCollapsed && <S.SeeMore onClick={() => setIsCollapsed(true)}>See More</S.SeeMore>}
+        <S.ItemName>配送情報</S.ItemName>
+        <p>番地: {streetAddress}</p>
+        {!isCollapsed && <S.SeeMore onClick={() => setIsCollapsed(true)}>詳細を見る</S.SeeMore>}
         {isCollapsed && (
           <>
-            <p>City: {city}</p>
-            <p>State: {state}</p>
-            <p>Zip Code: {zipCode}</p>
-            <p>Country: {country}</p>
+            <p>市区町村: {city}</p>
+            <p>都道府県: {state}</p>
+            <p>郵便番号: {zipCode}</p>
+            <p>国: {country}</p>
           </>
         )}
       </S.ShippingData>
       <S.Status>
-        <Image src="/icons/Check.svg" alt="check" height="14" width="16" /> <span>Done</span>
+        <Image src="/icons/Check.svg" alt="check" height="14" width="16" /> <span>完了</span>
       </S.Status>
     </S.CheckoutItem>
   );

@@ -66,9 +66,9 @@ const CartDetail = () => {
     <S.Container>
       <div>
         <S.Header>
-          <S.CarTitle>Shopping Cart</S.CarTitle>
+          <S.CarTitle>ショッピングカート</S.CarTitle>
           <S.EmptyCartButton onClick={emptyCart} $type="link">
-            Empty Cart
+            カートを空にする
           </S.EmptyCartButton>
         </S.Header>
         <CartItems productList={items} />

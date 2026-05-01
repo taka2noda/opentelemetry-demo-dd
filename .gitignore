@@ -13,6 +13,11 @@
 .settings
 .vs/
 .vscode
+.env.override
+terraform/*.tfstate
+terraform/*.tfstate.backup
+terraform/.terraform/
+terraform/.terraform.lock.hcl
 
 # AI Agents
 .claude/

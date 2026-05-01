@@ -16,3 +16,72 @@
 #    pipelines:
 #      traces:
 #        exporters: [spanmetrics, otlp_http/example]
+receivers:
+  docker_stats:
+    container_labels_to_metric_labels:
+      com.datadoghq.service: service
+
+extensions:
+  datadog/extension:
+    api:
+      site: ${env:DD_SITE_PARAMETER}
+      key: ${env:DD_API_KEY}
+    http:
+      endpoint: "localhost:9875"
+      path: "/metadata"
+
+exporters:
+  datadog:
+    traces:
+      compute_stats_by_span_kind: true
+      trace_buffer: 500
+    api:
+      site: ${env:DD_SITE_PARAMETER}
+      key: ${env:DD_API_KEY}
+    sending_queue:
+      batch:
+        min_size: 10
+        max_size: 100
+        flush_timeout: 10s
+  otlphttp/llmobs:
+    endpoint: https://otlp.${env:DD_SITE_PARAMETER}
+    headers:
+      dd-api-key: ${env:DD_API_KEY}
+      dd-otlp-source: llmobs
+
+processors:
+  resource:
+    attributes:
+      - key: deployment.environment.name
+        value: "otel"
+        action: upsert
+  filter/genai:
+    error_mode: ignore
+    traces:
+      span:
+        - attributes["gen_ai.operation.name"] == nil
+
+connectors:
+  datadog/connector:
+    traces:
+      compute_stats_by_span_kind: true
+
+service:
+  extensions: [datadog/extension]
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [resourcedetection, memory_limiter, resource, transform/sanitize_spans]
+      exporters: [otlp_grpc/jaeger, debug, spanmetrics, datadog, datadog/connector]
+    metrics:
+      receivers: [datadog/connector, docker_stats, httpcheck/frontend-proxy, hostmetrics, nginx, otlp, postgresql, redis, spanmetrics]
+      processors: [resourcedetection, memory_limiter, resource]
+      exporters: [otlp_http/prometheus, debug, datadog]
+    logs:
+      receivers: [otlp]
+      processors: [resourcedetection, memory_limiter, resource]
+      exporters: [opensearch, debug, datadog]
+    traces/llmobs:
+      receivers: [otlp]
+      processors: [filter/genai, resource]
+      exporters: [otlphttp/llmobs]
